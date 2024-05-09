@@ -1,0 +1,56 @@
+CREATE DATABASE tv_shop;
+
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DECIMAL(10, 2) NOT NULL,
+    image VARCHAR(255),
+    alt_text VARCHAR(255)
+);
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE cart_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL,
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id),
+    CONSTRAINT fk_product FOREIGN KEY (product_id) REFERENCES products(id)
+);
+
+
+INSERT INTO products (name, description, price, image, alt_text) VALUES 
+('Hisense Model A', 'Hisense Full HD Smart TV with HDR.', 350.00, '../images/HISENSE1.jpg', 'Hisense Full HD TV'),
+('Hisense Model B', 'Hisense 4K TV with modern features.', 450.00, '../images/HISENSE2.jpg', 'Hisense 4K TV'),
+('Hisense Model C', 'Hisense budget TV with great value.', 300.00, '../images/HISENSE3.jpg', 'Hisense Budget TV'),
+
+('LG Model X', 'LG UHD Smart TV with AI features.', 550.00, '../images/LG1.jpg', 'LG UHD Smart TV'),
+('LG Model Y', 'LG 4K OLED TV for superior picture quality.', 1000.00, '../images/LG2.jpg', 'LG 4K OLED TV'),
+('LG Model Z', 'LG Slim Design TV with Dolby Vision.', 650.00, '../images/LG3.jpg', 'LG Slim TV'),
+('LG Model V', 'LG TV with webOS and ThinQ AI.', 600.00, '../images/LG4.jpg', 'LG Smart TV'),
+('LG Model W', 'LG Crystal Display TV with vibrant colors.', 700.00, '../images/LG5.jpg', 'LG Crystal Display TV'),
+
+('Philips Model Q', 'Philips Ambilight TV with immersive experience.', 550.00, '../images/PHILIPS1.jpg', 'Philips Ambilight TV'),
+
+('Samsung Model E', 'Samsung QLED TV with Quantum Processor.', 1200.00, '../images/SAMSUNG1.jpg', 'Samsung QLED TV'),
+('Samsung Model F', 'Samsung 8K TV with Infinity Screen.', 2000.00, '../images/SAMSUNG2.jpg', 'Samsung 8K TV'),
+('Samsung Model G', 'Samsung The Frame TV with Art Mode.', 1600.00, '../images/SAMSUNG3.jpg', 'Samsung The Frame TV'),
+('Samsung Model H', 'Samsung Outdoor TV with weather-resistant.', 2500.00, '../images/SAMSUNG4.jpg', 'Samsung Outdoor TV'),
+
+('Sony Bravia O', 'Sony Bravia 4K UHD with HDR.', 900.00, '../images/SONY1.jpg', 'Sony Bravia UHD TV'),
+('Sony Bravia P', 'Sony OLED TV with Acoustic Surface Audio.', 1100.00, '../images/SONY2.jpg', 'Sony OLED TV'),
+('Sony Bravia R', 'Sony Smart Android TV with Google Assistant.', 850.00, '../images/SONY3.jpg', 'Sony Smart TV'),
+
+('TCL Series S', 'TCL Roku TV with simplified remote.', 400.00, '../images/TCL1.jpg', 'TCL Roku TV'),
+('TCL Series T', 'TCL QLED TV with quantum dot technology.', 550.00, '../images/TCL2.jpg', 'TCL QLED TV'),
+('TCL Series U', 'TCL Android TV with hands-free voice control.', 300.00, '../images/TCL3.jpg', 'TCL Android TV'),
+
+('Toshiba Fire TV', 'Toshiba TV with Fire TV experience built-in.', 350.00, '../images/TOSHIBA1.jpg', 'Toshiba Fire TV');
